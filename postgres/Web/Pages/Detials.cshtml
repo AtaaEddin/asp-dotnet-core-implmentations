@@ -1,0 +1,32 @@
+@page "{id:int}"
+@model DetialModel
+@{
+    ViewData["Title"] = "Packet Details";
+}
+
+<h1>Packet Detials Page</h1>
+
+
+<h3>Name: @Model.packetWithFeatures.Name</h3>
+<h3>ImgUri: @Model.packetWithFeatures.ImgUri</h3>
+<br>
+<br>
+
+@if(@Model.packetWithFeatures.Features.Any()){
+    <h3>Packet Features</h3>
+    @foreach (var feature in @Model.packetWithFeatures.Features)
+    {
+        <p>@feature.Description</p>
+        <a asp-page="/Features/Edit" asp-route-Pid="@Model.packetWithFeatures.Id" asp-route-id="@feature.id">
+        Change</a>
+        <a asp-page="/Features/Delete" asp-route-Pid="@Model.packetWithFeatures.Id" asp-route-id="@feature.id">
+        Delete</a>
+    }
+}
+else 
+{
+    <a asp-page="/Features/Add" asp-route-Pid="@Model.packetWithFeatures.Id">add Features to Packet?</a>
+}
+<br>
+<br>
+<a asp-page="/Index">Back to Packets List</a>

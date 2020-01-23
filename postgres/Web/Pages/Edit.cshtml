@@ -1,0 +1,25 @@
+@page "{id:int}"
+@model EditModel
+@{
+    ViewData["Title"] = "Edit Packet";
+}
+
+<h1>Edit Packet Page</h1>
+
+<form method="post" asp-page="Edit" asp-page-handler="put">
+    <input type="hidden" asp-for="packetViewModel.Id" />
+    <label asp-for="packetViewModel.Name"></label>
+    <input asp-for="packetViewModel.Name" />
+    <label asp-for="packetViewModel.ImgUri"></label>
+    <input asp-for="packetViewModel.ImgUri" />
+    <button type="submit">Edit</button>
+</form>
+
+@foreach (var feature in Model.packetFeaturesViewMode.Features)
+{
+    <p>@feature.Description</p>
+        <a asp-page="/Features/Edit" asp-route-Pid="@Model.packetViewModel.Id" asp-route-id="@feature.id">
+        Change</a>
+}
+
+<a asp-page="/Features/Add" asp-route-Pid="@Model.packetViewModel.Id">Add new feature</a>

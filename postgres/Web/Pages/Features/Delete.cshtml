@@ -1,0 +1,30 @@
+@page 
+@model DeleteModel
+@{
+    ViewData["Title"] = "Edit Feature";
+}
+
+<h1>Delete Feature Page</h1>
+
+<h2>Packet</h2>
+<h3>Name: @Model.packetFeaturesViewModel.Name</h3>
+<h3>ImgUri: @Model.packetFeaturesViewModel.ImgUri</h3>
+
+<h3>Features</h3>
+@foreach (var feature in Model.packetFeaturesViewModel.Features)
+{
+    @if (feature.id == Model.featureViewModel.id) 
+    {
+        <h4>Are you sure you want do delete?</h4>
+        <form method="post" asp-page="/Features/Delete" asp-route-id="@Model.featureViewModel.id" asp-route-Pid="@Model.packetFeaturesViewModel.Id">
+            <input type="hidden" asp-for="featureViewModel.id" />
+            <input type="hidden" asp-for="featureViewModel.Description" />
+            <h4>@feature.Description</h4>
+            <button type="submit">Delete</button>
+        </form>
+    }
+    else
+    {
+        <h4>@feature.Description</h4>
+    }
+}

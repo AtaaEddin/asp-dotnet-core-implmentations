@@ -1,0 +1,23 @@
+@page
+@model IndexModel
+
+<h1>all Packets with its Features</h1>
+
+<a asp-page="/Add">Add new Packet</a>
+
+@foreach (var packet in Model.packetFeatureViewModel)
+{
+    <h3>@packet.Name</h3>
+    <h3>@packet.ImgUri</h3>
+    <a asp-page="/Delete" asp-route-id="@packet.Id">Delete</a>
+    <a asp-page="/edit" asp-route-id="@packet.Id">Edit</a>
+    <a asp-page="/Detials" asp-route-id="@packet.Id">Detials</a>
+    @foreach (var feature in packet.Features)
+    {
+        <p>@feature.Description</p>
+        <a asp-page="/Features/Edit" asp-route-Pid="@packet.Id" asp-route-id="@feature.id">
+        Change</a>
+        <a asp-page="/Features/Delete" asp-route-Pid="@packet.Id" asp-route-id="@feature.id">
+        Delete</a>
+    }
+}

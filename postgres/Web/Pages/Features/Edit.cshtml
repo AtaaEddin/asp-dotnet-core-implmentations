@@ -1,0 +1,29 @@
+@page 
+@model EditModel
+@{
+    ViewData["Title"] = "Edit Feature";
+}
+
+<h1>Add new Feature Page</h1>
+
+<h2>Packet</h2>
+<h3>Name: @Model.packetFeaturesViewModel.Name</h3>
+<h3>ImgUri: @Model.packetFeaturesViewModel.ImgUri</h3>
+
+<h3>Features</h3>
+@foreach (var feature in Model.packetFeaturesViewModel.Features)
+{
+    @if (feature.id == Model.featureViewModel.id) 
+    {
+        <form method="post" asp-page="/Features/Edit" asp-route-id="@Model.featureViewModel.id" asp-route-Pid="@Model.packetFeaturesViewModel.Id">
+            <input type="hidden" asp-for="featureViewModel.id" />
+            <label asp-for="featureViewModel.Description"></label>
+            <input asp-for="featureViewModel.Description" />
+            <button type="submit">Edit</button>
+        </form>
+    }
+    else
+    {
+        <h4>@feature.Description</h4>
+    }
+}

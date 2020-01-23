@@ -1,0 +1,16 @@
+@page 
+@model AddModel
+@{
+    ViewData["Title"] = "Add Packet"; 
+}
+
+<h1>Add Packet Page</h1>
+
+<h3>add new Packet</h3>
+<form method="post" asp-page="/Add">
+    <label asp-for="packetViewModel.Name"></label>
+    <input asp-for="packetViewModel.Name"/>
+    <label asp-for="packetViewModel.ImgUri"></label>
+    <input asp-for="packetViewModel.ImgUri"/>
+    <button type="submite">Submite</button>
+</form>
